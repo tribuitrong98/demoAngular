@@ -1,0 +1,30 @@
+<div class="row" style="margin-top: 20px">
+  <div class="col">
+  </div>
+  <div class="col">
+    <div class="card border">
+      <form (ngSubmit)="onsubmit()" [formGroup]="formRegister">
+        <h3 class="card-header text-primary">Đăng ký tài khoản</h3>
+        <div class="card-body">
+          <div class="mb-3">
+            <input formControlName="hoten" name="hoten" type="text" class="form-control" placeholder="Họ và tên">
+            <i *ngIf="formRegister.controls['hoten'].invalid && formRegister.controls['hoten'].touched">Vui lòng nhập họ
+              và tên</i>
+          </div>
+          <div class="mb-3">
+            <input formControlName="email" type="email" class="form-control" placeholder="Email đăng nhập">
+            <i *ngIf="formRegister.controls['email'].errors && formRegister.controls['email'].touched">Email phải đúng
+              định dạng</i>
+          </div>
+          <div class="mb-3">
+            <input formControlName="password" minlength="6" type="password" class="form-control" placeholder="Mật khẩu đăng nhập">
+            <i *ngIf="formRegister.controls['password'].invalid && formRegister.controls['password'].touched">Mật khẩu phải có từ 6 ký tự</i>
+          </div>
+          <button [disabled]="formRegister.invalid" class="btn btn-primary" style="width: 100%">Đăng ký</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col">
+  </div>
+</div>

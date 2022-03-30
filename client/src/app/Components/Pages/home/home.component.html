@@ -1,0 +1,11 @@
+<div class="row" style="margin-top: 20px">
+    <div class="col">
+    </div>
+    <div class="col">
+        <input class="form-control" type="text" [(ngModel)] = "txtCityName">
+        <p>{{ cityName != '' ? (cityName + ': ' + weather + '*C') : 'Vui lòng nhập tên thành phố' }}</p>
+    </div>
+    <div class="col">
+        <button class="btn btn-success" (click) = "getWeather()">Tìm</button>
+    </div>
+</div>
