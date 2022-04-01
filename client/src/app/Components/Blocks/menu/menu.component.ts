@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from 'src/app/service';
-import { LoginComponent } from '../../Pages/login/login.component';
 
 @Component({
   selector: 'app-menu',
@@ -11,24 +10,21 @@ export class MenuComponent implements OnInit {
 
   date = Date.now();
   constructor(
-    private loginService: Service, private lg: LoginComponent
+    private loginService: Service
   ) { }
 
-  checkIsLogin = false
-  
   ngOnInit(): void {
     
   }
 
   checkLogin(){
-    this.checkIsLogin = this.lg.isLogin
-    if(this.checkIsLogin == true) { 
-      return this.checkIsLogin = true; 
+    if(this.loginService.currentMessage !== undefined) { 
+      return  true; 
     }
-    else return this.checkIsLogin = false;
+    else return false;
   }
 
   checkLogout(){
-    return false;
+    return this.loginService.currentMessage = undefined;
   }
 }

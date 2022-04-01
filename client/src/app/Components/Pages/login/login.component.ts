@@ -1,12 +1,8 @@
-import { Injectable } from "@angular/core";
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Service } from '../../../service';
 import { Router } from "@angular/router";
 
-@Injectable({
-  providedIn: 'root'
-})
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -45,7 +41,7 @@ export class LoginComponent implements OnInit {
 }
 
 function checkEmail(formRegister: FormControl){
-  if(formRegister.value.includes('@gmail.com')){
+  if(formRegister.value.includes('@')){
     return null;
   }else return {gmail: true}
 }
