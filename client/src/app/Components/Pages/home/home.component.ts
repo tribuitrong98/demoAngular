@@ -12,6 +12,12 @@ export class HomeComponent implements OnInit {
   txtCityName = '';
   weather = '';
   cityName = '';
+  listCity = [{
+      id: 0,
+      cityName: 'hanoi',
+      weather: '22',
+      date: Date.now()
+  }];
 
   ngOnInit(): void {}
 
@@ -19,6 +25,14 @@ export class HomeComponent implements OnInit {
     this.wt.getWeatherService(this.txtCityName)
       .subscribe((res: any) => {
         this.weather = res.main.temp;
+        this.listCity.unshift(
+          {
+            id: this.listCity.length + 1,
+            cityName: this.cityName,
+            weather: this.weather,
+            date: Date.now()
+          }
+        )
       },
       (err: any) => {
         this.weather = '';

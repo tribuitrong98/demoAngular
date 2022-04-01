@@ -14,9 +14,12 @@
         <div class="col  d-flex justify-content-center">
           <h5>{{date | date:'shortTime'}} | {{date | date:'fullDate'}}</h5>
         </div>
-        <div class="col d-flex justify-content-end">
+        <div *ngIf="!checkLogin()" class="col d-flex justify-content-end" >
           <button routerLink="/login" class="btn btn-primary">Đăng nhập</button>
           <button routerLink="/register" class="btn btn-primary" style="margin-left: 10px;">Đăng ký</button>
+        </div>
+        <div *ngIf="checkLogin()" class="col d-flex justify-content-end">
+          <button (click) ="checkLogout()" routerLink="/" class="btn btn-primary">Đăng xuat</button>
         </div>
       </div>
     </div>

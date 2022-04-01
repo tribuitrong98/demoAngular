@@ -13,5 +13,8 @@ app.post('/register', jsonParser, (req, res) => {
     res.send(req.body);
 });
 
+app.post('/login', jsonParser, (req, res) => {
+    res.send(req.body);
+});
 
 app.listen(3000, () => console.log('server success'));

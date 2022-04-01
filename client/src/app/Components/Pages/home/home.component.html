@@ -9,3 +9,24 @@
         <button class="btn btn-success" (click) = "getWeather()">Tìm</button>
     </div>
 </div>
+<br>
+
+<div class="row">
+    <h3 class="d-flex justify-content-center text-primary">Danh sach cac thanh pho da tim kiem</h3>
+    <table class="table">
+        <thead>      
+          <tr>
+            <th scope="col">Thanh pho</th>
+            <th scope="col">Nhiet do</th>
+            <th scope="col">Ngay</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let city of listCity" >
+            <td>{{city.cityName}}</td>
+            <td>{{city.weather}}</td>
+            <td>{{city.date | date: 'shortTime'}} | {{ city.date | date:'fullDate'}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
