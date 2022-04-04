@@ -1,12 +1,8 @@
-import { Injectable } from "@angular/core";
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Service } from '../../../service';
 import { Router } from "@angular/router";
 
-@Injectable({
-  providedIn: 'root'
-})
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,8 +10,6 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-
-  isLogin = false;
 
   formLogin = new FormGroup({});
   constructor(private fb: FormBuilder,
@@ -30,12 +24,19 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  changeText(text: string) {
+    this.loginService.changeMessage(text);
+   }
+ 
   onsubmit() {
     this.loginService.postLogin(this.formLogin.value)
-    .subscribe( res => {
-      alert('Dang nhap thanh cong')
-      this.isLogin= true
-      this.router.navigate(['/']);
+    .subscribe( (result: any) => {
+      if(result.kq == 1) {
+        this.changeText('ok');
+        this.router.navigate(['/']);
+      }else {
+        alert("Tên tài khoản hoặc mật khẩu không chính xác")
+      }
     }, err => {
       console.log(err);
     }
@@ -45,7 +46,7 @@ export class LoginComponent implements OnInit {
 }
 
 function checkEmail(formRegister: FormControl){
-  if(formRegister.value.includes('@gmail.com')){
+  if(formRegister.value.includes('@')){
     return null;
   }else return {gmail: true}
 }

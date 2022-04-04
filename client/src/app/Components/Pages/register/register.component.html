@@ -20,7 +20,7 @@
             <input formControlName="password" minlength="6" type="password" class="form-control" placeholder="Mật khẩu đăng nhập">
             <i *ngIf="formRegister.controls['password'].invalid && formRegister.controls['password'].touched">Mật khẩu phải có từ 6 ký tự</i>
           </div>
-          <button routerLink="/login" [disabled]="formRegister.invalid" class="btn btn-primary" style="width: 100%">Đăng ký</button>
+          <button [disabled]="formRegister.invalid" type="submit" class="btn btn-primary" style="width: 100%">Đăng ký</button>
         </div>
       </form>
     </div>
