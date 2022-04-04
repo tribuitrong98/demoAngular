@@ -11,8 +11,6 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
 
 
-  isLogin = false;
-
   formLogin = new FormGroup({});
   constructor(private fb: FormBuilder,
      private loginService: Service,
@@ -26,12 +24,19 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  changeText(text: string) {
+    this.loginService.changeMessage(text);
+   }
+ 
   onsubmit() {
     this.loginService.postLogin(this.formLogin.value)
-    .subscribe( res => {
-      alert('Dang nhap thanh cong')
-      this.isLogin= true
-      this.router.navigate(['/']);
+    .subscribe( (result: any) => {
+      if(result.kq == 1) {
+        this.changeText('ok');
+        this.router.navigate(['/']);
+      }else {
+        alert("Tên tài khoản hoặc mật khẩu không chính xác")
+      }
     }, err => {
       console.log(err);
     }

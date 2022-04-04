@@ -8,23 +8,25 @@ import { Service } from 'src/app/service';
 })
 export class MenuComponent implements OnInit {
 
+  otherMessage: any;
   date = Date.now();
   constructor(
     private loginService: Service
   ) { }
 
   ngOnInit(): void {
-    
+    this.otherMessage = this.loginService.currentMessage.subscribe(msg => this.otherMessage = msg);
   }
 
   checkLogin(){
-    if(this.loginService.currentMessage !== undefined) { 
+    if(this.otherMessage === 'ok') { 
       return  true; 
     }
     else return false;
   }
 
   checkLogout(){
-    return this.loginService.currentMessage = undefined;
+    return this.otherMessage = '';
   }
+
 }
